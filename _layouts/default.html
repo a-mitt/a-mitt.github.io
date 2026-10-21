@@ -10,20 +10,18 @@
     if (langs.indexOf(l) >= 0) { try { localStorage.setItem("lang", l); } catch (e) {} }
     else { try { l = localStorage.getItem("lang"); } catch (e) {} }
     if (langs.indexOf(l) < 0) {
-      var n = (navigator.language || "ja").slice(0, 2).toLowerCase();
-      l = langs.indexOf(n) >= 0 ? n : "en";
+      var n = (navigator.language || "ja").toLowerCase();
+      l = /^zh-(tw|hk|mo|hant)/.test(n) ? "zh-tw" : n.slice(0, 2);
+      if (langs.indexOf(l) < 0) l = "en";
     }
     document.documentElement.dataset.lang = l;
-    document.documentElement.lang = l === "zh" ? "zh-CN" : l;
+    document.documentElement.lang = { zh: "zh-CN", "zh-tw": "zh-TW" }[l] || l;
   })();
 </script>
 <style>
 /* 選んだ言語以外を隠す */
-html:not([data-lang="ja"]) [data-l="ja"],
-html:not([data-lang="en"]) [data-l="en"],
-html:not([data-lang="ko"]) [data-l="ko"],
-html:not([data-lang="zh"]) [data-l="zh"]
-{ display: none !important; }
+{% for l in site.langs %}html:not([data-lang="{{ l }}"]) [data-l="{{ l }}"]{% unless forloop.last %},{% endunless %}
+{% endfor %}{ display: none !important; }
 </style>
 {% seo %}
 <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
@@ -37,7 +35,8 @@ html:not([data-lang="zh"]) [data-l="zh"]
       <option value="ja">日本語</option>
       <option value="en">English</option>
       <option value="ko">한국어</option>
-      <option value="zh">中文</option>
+      <option value="zh">简体中文</option>
+      <option value="zh-tw">繁體中文</option>
     </select>
   </label>
 </header>
@@ -51,7 +50,7 @@ html:not([data-lang="zh"]) [data-l="zh"]
     sel.value = root.dataset.lang;
     sel.addEventListener("change", function () {
       root.dataset.lang = sel.value;
-      root.lang = sel.value === "zh" ? "zh-CN" : sel.value;
+      root.lang = { zh: "zh-CN", "zh-tw": "zh-TW" }[sel.value] || sel.value;
       try { localStorage.setItem("lang", sel.value); } catch (e) {}
     });
   })();

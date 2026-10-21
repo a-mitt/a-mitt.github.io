@@ -11,7 +11,7 @@ version: 1.0.0
 platforms: [Windows, Mac]
 downloads:
   - label: BOOTH で入手（無料）
-    label_i18n: { en: Get it on BOOTH (free), ko: BOOTH에서 받기 (무료), zh: 在BOOTH获取（免费） }
+    label_i18n: { en: Get it on BOOTH (free), ko: BOOTH에서 받기 (무료), zh: 在BOOTH获取（免费）, zh-tw: 在BOOTH取得（免費） }
     url: https://xxxx.booth.pm/items/0000000
 # image: /assets/img/xxx.jpg   # 任意。一覧・SNSカード用の画像（16:9）
 # 訳（任意。無い言語は日本語が出る）

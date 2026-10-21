@@ -5,7 +5,7 @@ lang: ja
 timezone: Asia/Tokyo
 
 # 対応言語（先頭が基本の言語）
-langs: [ja, en, ko, zh]
+langs: [ja, en, ko, zh, zh-tw]
 
 plugins:
   - jekyll-seo-tag
@@ -19,4 +19,4 @@ defaults:
   - scope: { type: works }
     values: { layout: work }
 
-exclude: [README.md, _templates]
+exclude: [README.md, _templates, tools, translation-check.md]

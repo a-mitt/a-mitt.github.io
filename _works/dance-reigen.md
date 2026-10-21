@@ -11,11 +11,12 @@ image: /assets/img/dance-reigen.jpg
 repo: https://github.com/a-mitt/dance-reigen
 updated: 2026-10-20   # 更新履歴（_data/changelog/dance-reigen.yml）が空のときの最終更新日
 i18n:
-  title: { en: Dancing Reigen, ko: 댄스 레이겐, zh: 跳舞的灵幻 }
+  title: { en: Dancing Reigen, ko: 댄스 레이겐, zh: 跳舞的灵幻, zh-tw: 跳舞的靈幻 }
   description:
     en: A page where Reigen just dances. BGM, penlights, tap for party poppers or applause, and everyone's comments scroll by.
     ko: 레이겐이 춤추기만 하는 페이지. BGM・펜라이트・탭으로 크래커와 박수, 모두의 코멘트도 흘러갑니다.
     zh: 灵幻只是在跳舞的页面。BGM、荧光棒、点击放礼炮或鼓掌，大家的评论也会飘过。
+    zh-tw: 靈幻只是在跳舞的頁面。BGM、螢光棒、點選放禮炮或鼓掌，大家的評論也會飄過。
 ---
 
 <div data-l="ja" markdown="1">
@@ -80,5 +81,21 @@ A page where Reigen just dances.
 ## 规约・注意
 
 - 本作为同人作品，与官方无任何关系。
+
+</div>
+<div data-l="zh-tw" markdown="1">
+
+## 內容
+
+靈幻只是在跳舞的頁面。
+
+- 切換BGM與左右搖擺
+- 誇獎、歡呼、螢光棒
+- 點選放禮炮 / 搖鈴鼓 / 鼓掌
+- 大家的評論會像彈幕一樣飄過
+
+## 規約・注意
+
+- 本作為同人作品，與官方無任何關係。
 
 </div>

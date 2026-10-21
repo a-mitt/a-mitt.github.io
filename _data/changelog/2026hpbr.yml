@@ -1,106 +1,129 @@
 # 更新履歴。新しいものを上に足す。先頭の date が「最終更新日」になる。
 #   date / version（任意）/ note（任意の一言）/ sections: 見出しごとの箇条書き
-#   文字列は日本語だけでもOK。訳を付けるなら { ja: ..., en: ..., ko: ..., zh: ... }
+#   文字列は日本語だけでもOK。訳を付けるなら { ja: ..., en: ..., ko: ..., zh: ..., zh-tw: ... }
 - date: 2026-10-12
   version: "1.1"
   sections:
-    - heading: { ja: 進行不能・フリーズ, en: Softlocks & freezes, ko: 진행 불가・프리즈, zh: 卡关・卡死 }
+    - heading: { ja: 進行不能・フリーズ, en: Softlocks & freezes, ko: 진행 불가・프리즈, zh: 卡关・卡死, zh-tw: 卡關・卡死 }
       items:
         - ja: ライブラリのこやを開くと戻れなくなるのを修正
           en: Fixed being unable to go back after opening Koya in the Library
           ko: 라이브러리에서 코야를 열면 돌아갈 수 없던 문제 수정
           zh: 修复在资料库中打开Koya后无法返回的问题
+          zh-tw: 修復在資料庫中開啟Koya後無法返回的問題
         - ja: エンディングが黒画面で止まる問題を修正
           en: Fixed the ending getting stuck on a black screen
           ko: 엔딩이 검은 화면에서 멈추는 문제 수정
           zh: 修复结局停在黑屏的问题
+          zh-tw: 修復結局停在黑畫面的問題
         - ja: 会話・選択画面を開いている間は、別の物を調べられないように（二重に開いて止まるのを防止）
           en: You can no longer examine other objects while a dialogue or choice screen is open (prevents freezes from opening two at once)
           ko: 대화・선택 화면이 열려 있는 동안 다른 물건을 조사할 수 없도록 변경 (이중으로 열려 멈추는 현상 방지)
           zh: 对话・选项画面打开时无法再调查其他物品（防止重复打开导致卡住）
+          zh-tw: 對話・選項畫面開啟時無法再調查其他物品（防止重複開啟導致卡住）
         - ja: 画面を閉じた直後0.3秒の入力を無視（誤操作の防止）
           en: Input is ignored for 0.3 seconds right after closing a screen (prevents accidental taps)
           ko: 화면을 닫은 직후 0.3초간 입력 무시 (오조작 방지)
           zh: 关闭画面后0.3秒内忽略输入（防止误操作）
+          zh-tw: 關閉畫面後0.3秒內忽略輸入（防止誤操作）
         - ja: こやに変わったあともお祝いボタンの演出が出るように修正
           en: Fixed the celebration button effect not appearing after switching to Koya
           ko: 코야로 바뀐 뒤에도 축하 버튼 연출이 나오도록 수정
           zh: 修复切换为Koya后庆祝按钮特效不显示的问题
-    - heading: { ja: 当たり判定・重なり, en: Collision & overlap, ko: 충돌 판정・겹침, zh: 碰撞判定・重叠 }
+          zh-tw: 修復切換為Koya後慶祝按鈕特效不顯示的問題
+    - heading: { ja: 当たり判定・重なり, en: Collision & overlap, ko: 충돌 판정・겹침, zh: 碰撞判定・重叠, zh-tw: 碰撞判定・重疊 }
       items:
         - ja: ゴミ箱・植木鉢・プレゼントの山の貫通を修正
           en: Fixed walking through the trash can, flower pot, and pile of presents
           ko: 쓰레기통・화분・선물 더미를 통과하던 문제 수정
           zh: 修复可穿过垃圾桶、花盆和礼物堆的问题
+          zh-tw: 修復可穿過垃圾桶、花盆和禮物堆的問題
         - ja: ゴミ箱の判定の抜け穴を修正（足元の3点の間をすり抜けられていた）
           en: Fixed a gap in the trash can's collision (you could slip between the three points at its base)
           ko: 쓰레기통 판정의 빈틈 수정 (발밑 3점 사이로 빠져나갈 수 있었음)
           zh: 修复垃圾桶判定的漏洞（可从底部三个判定点之间穿过）
+          zh-tw: 修復垃圾桶判定的漏洞（可從底部三個判定點之間穿過）
         - ja: 机の判定を下げて、机の奥にも立てるように
           en: Lowered the desk's collision so you can stand behind it
           ko: 책상 판정을 낮춰 책상 안쪽에도 설 수 있도록 변경
           zh: 降低桌子的判定，现在可以站到桌子后面
+          zh-tw: 降低桌子的判定，現在可以站到桌子後面
         - ja: マッサージ台の下に入れないように、風船は通り抜けられるように
           en: You can no longer walk under the massage table, and balloons can now be walked through
           ko: 마사지대 아래로 들어갈 수 없도록, 풍선은 통과할 수 있도록 변경
           zh: 无法再进入按摩台下方；气球现在可以穿过
-    - heading: { ja: 操作・画面, en: Controls & screens, ko: 조작・화면, zh: 操作・画面 }
+          zh-tw: 無法再進入按摩台下方；氣球現在可以穿過
+    - heading: { ja: 操作・画面, en: Controls & screens, ko: 조작・화면, zh: 操作・画面, zh-tw: 操作・畫面 }
       items:
         - ja: ろうそく演出のスキップボタンを追加
           en: Added a skip button for the candle scene
           ko: 촛불 연출 스킵 버튼 추가
           zh: 新增蜡烛演出的跳过按钮
+          zh-tw: 新增蠟燭演出的跳過按鈕
         - ja: 設定に「遊び方」を追加。始めの10秒だけ、設定から開けることを案内（最初の一回だけ表示）
           en: Added "How to Play" to Settings. For the first 10 seconds, a hint says it can be opened from Settings (first time only)
           ko: 설정에 '플레이 방법' 추가. 처음 10초 동안 설정에서 열 수 있다고 안내 (최초 1회만 표시)
           zh: 设置中新增「玩法说明」。开始的10秒内会提示可从设置打开（仅首次显示）
+          zh-tw: 設定中新增「玩法說明」。開始的10秒內會提示可從設定開啟（僅首次顯示）
         - ja: 「セリフ・エンディングのみリセット」と「すべてリセット」を追加（2回押しで実行）。セリフ・エンディングのみリセットでは、ハート欄の回数と、そこで解放したこや・隆の表示は残る
           en: Added "Reset dialogue & endings only" and "Reset everything" (press twice to confirm). "Reset dialogue & endings only" keeps your Heart count and the Koya and Takashi you unlocked there
           ko: "'대사・엔딩만 리셋'과 '모두 리셋' 추가 (두 번 눌러 실행). '대사・엔딩만 리셋'에서는 하트 칸의 횟수와 거기서 해금한 코야・타카시 표시가 유지됨"
           zh: 新增「仅重置台词・结局」和「全部重置」（按两次执行）。「仅重置台词・结局」会保留爱心栏的次数及在此解锁的Koya・隆
+          zh-tw: 新增「僅重置台詞・結局」和「全部重置」（按兩次執行）。「僅重置台詞・結局」會保留愛心欄的次數及在此解鎖的Koya・隆
         - ja: 設定に全画面ボタン、注意書き、スクロールを追加。並びを調整
           en: Added a fullscreen button, notes, and scrolling to Settings, and reordered the items
           ko: 설정에 전체 화면 버튼, 주의 사항, 스크롤 추가. 배치 조정
           zh: 设置中新增全屏按钮、注意事项和滚动功能，并调整了排列
+          zh-tw: 設定中新增全螢幕按鈕、注意事項和捲動功能，並調整了排列
         - ja: 調べた物の絵を、会話画面の真ん中に表示
           en: Pictures of examined objects now appear in the center of the dialogue screen
           ko: 조사한 물건의 그림을 대화 화면 가운데에 표시
           zh: 调查物品的图片现在显示在对话画面中央
+          zh-tw: 調查物品的圖片現在顯示在對話畫面中央
         - ja: ライブラリの未解放の項目を押すと、ヒントを表示
           en: Tapping a locked Library entry now shows a hint
           ko: 라이브러리의 미해금 항목을 누르면 힌트 표시
           zh: 点击资料库中未解锁的项目会显示提示
+          zh-tw: 點選資料庫中未解鎖的項目會顯示提示
         - ja: 「!」マークの色と位置を調整。調べる物の中心付近に固定
           en: Adjusted the color and position of the "!" mark; it now stays near the center of the object
           ko: "'!' 마크의 색과 위치 조정. 조사할 물건의 중심 부근에 고정"
           zh: 调整「!」标记的颜色和位置，固定在调查物品的中心附近
+          zh-tw: 調整「!」標記的顏色和位置，固定在調查物品的中心附近
         - ja: 「本日の主役たすき」を一度調べたら、再度調べられないように
           en: The Guest of Honor Sash can no longer be examined again once you've examined it
           ko: "'오늘의 주인공 어깨띠'는 한 번 조사하면 다시 조사할 수 없도록 변경"
           zh: 「今日主角绶带」调查一次后无法再次调查
+          zh-tw: 「今日主角綬帶」調查一次後無法再次調查
         - ja: 夜のパートの流れを調整（調べる場所と、セリフの追加）
           en: Adjusted the flow of the night part (places to examine and new lines)
           ko: 밤 파트의 흐름 조정 (조사할 장소와 대사 추가)
           zh: 调整夜晚部分的流程（调查地点与新增台词）
+          zh-tw: 調整夜晚部分的流程（調查地點與新增台詞）
         - ja: エンディングの文章を追加・調整
           en: Added and revised ending text
           ko: 엔딩 문장 추가・조정
           zh: 新增并调整结局文本
+          zh-tw: 新增並調整結局文字
         - ja: 会話文の文末の句点を統一
           en: Made sentence-ending punctuation consistent in dialogue
           ko: 대화문 문장 끝 마침표 통일
           zh: 统一对话文本句末的句号
-    - heading: { ja: キャラ・絵, en: Characters & art, ko: 캐릭터・그림, zh: 角色・美术 }
+          zh-tw: 統一對話文字句末的句號
+    - heading: { ja: キャラ・絵, en: Characters & art, ko: 캐릭터・그림, zh: 角色・美术, zh-tw: 角色・美術 }
       items:
         - ja: 一部の表記と重ならないようにミニこやを追加、キャラを少し大きく、ネクタイの絵を差し替え
           en: Added Mini Koya so it doesn't overlap some labels, made characters slightly larger, and replaced the necktie art
           ko: 일부 표기와 겹치지 않도록 미니 코야 추가, 캐릭터를 조금 크게, 넥타이 그림 교체
           zh: 新增迷你Koya以避免与部分文字重叠，角色稍微放大，并替换了领带的图
+          zh-tw: 新增迷你Koya以避免與部分文字重疊，角色稍微放大，並替換了領帶的圖
         - ja: フォントを woff2 に変換して軽量化
           en: Converted fonts to woff2 for smaller downloads
           ko: 폰트를 woff2로 변환해 경량화
           zh: 字体转换为woff2以减小体积
+          zh-tw: 字型轉換為woff2以減小體積
         - ja: 内部の整理（見た目と操作は変わりません）→コード軽量化
           en: Internal cleanup and lighter code (no change to visuals or controls)
           ko: 내부 정리 (외형과 조작은 변경 없음) → 코드 경량화
           zh: 内部整理（外观与操作不变）→ 代码轻量化
+          zh-tw: 內部整理（外觀與操作不變）→ 程式碼輕量化

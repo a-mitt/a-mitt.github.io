@@ -18,12 +18,16 @@ bio:
     为灵幻新隆疯狂的宅。偶尔会产出画、文字、游戏和视频。
     本站用于放置我的作品链接、介绍及更新公告等。
     欢迎随手收藏。
+  zh-tw: |
+    為靈幻新隆瘋狂的宅。偶爾會產出畫、文字、遊戲和影片。
+    本站用於放置我的作品連結、介紹及更新公告等。
+    歡迎隨手收藏。
 
 # 各種サイトへのリンク（url が空のものは表示されません）
 #   avatar: 左に出すアイコン画像 / logo: _includes/icons/ のロゴ名 / emoji: 絵文字アイコン
 #   badge: アイコン右下に重ねる小さなロゴ名
 links:
-  - label: { ja: X（表垢）, en: X (main), ko: X (본계), zh: X（主号） }
+  - label: { ja: X（表垢）, en: X (main), ko: X (본계), zh: X（主号）, zh-tw: X（主帳） }
     handle: "@NLisei_Kotowari"
     url: https://x.com/NLisei_Kotowari
     avatar: /assets/img/icon-x-main.jpg
@@ -33,7 +37,8 @@ links:
       en: I'm mostly here. Posts and announcements show up here first.
       ko: 주로 여기 있어요. 게시물과 공지는 여기가 먼저입니다.
       zh: 主要在这里活动。作品和公告会先在这里发布。
-  - label: { ja: X（裏垢）, en: X (alt), ko: X (부계), zh: X（小号） }
+      zh-tw: 主要在這裡活動。作品和公告會先在這裡發布。
+  - label: { ja: X（裏垢）, en: X (alt), ko: X (부계), zh: X（小号）, zh-tw: X（副帳） }
     handle: "@Lisei_lose_"
     url: https://x.com/Lisei_lose_
     avatar: /assets/img/icon-x-sub.jpg
@@ -43,6 +48,7 @@ links:
       en: Adult and sensitive content. I only approve accounts that state they're 18+ and out of high school.
       ko: 성인향・민감한 콘텐츠를 올립니다. 고졸 & 18세 이상 표기가 있는 분만 받습니다.
       zh: 发布成人向及敏感内容。仅通过注明已高中毕业且18岁以上的账号。
+      zh-tw: 發布成人向及敏感內容。僅通過註明已高中畢業且18歲以上的帳號。
   - label: pixiv
     handle: Norah
     url: https://www.pixiv.net/users/45276382
@@ -52,7 +58,8 @@ links:
       en: Mainly for tweet-log compilations, novels, and samples of my work.
       ko: 작품 트윗 로그, 소설 투고, 샘플 투고 등은 주로 여기입니다.
       zh: 作品的推文合集、小说投稿、样品投稿等主要在这里。
-  - label: { ja: wavebox（波箱）, en: wavebox, ko: wavebox, zh: wavebox }
+      zh-tw: 作品的推文合集、小說投稿、樣品投稿等主要在這裡。
+  - label: { ja: wavebox（波箱）, en: wavebox, ko: wavebox, zh: wavebox, zh-tw: wavebox }
     url: https://wavebox.me/wave/9ugc1tw31dw0531f/
     emoji: 🌊📦
     desc:
@@ -60,6 +67,7 @@ links:
       en: A box for comments, requests, and reports. You can send anonymously — like Marshmallow.
       ko: 감상・리퀘스트・제보 등을 받는 상자입니다. 익명으로 보낼 수 있어요. 마시멜로 같은 것.
       zh: 接收感想、点梗、反馈等的提问箱。可匿名发送，类似棉花糖（Marshmallow）。
+      zh-tw: 接收感想、點梗、回報等的提問箱。可匿名傳送，類似棉花糖（Marshmallow）。
   - label: BOOTH
     url: ""            # 例: https://xxxx.booth.pm/
     emoji: 🛒
@@ -81,3 +89,4 @@ links:
       en: Source code for my websites and more. If you know your way around, feel free to download or read the code. If you're worried about data collection, you can check it here.
       ko: 웹사이트 등의 소스 코드 보관소. 지식이 있는 분은 자유롭게 코드를 받거나 읽을 수 있습니다. 정보 수집이 걱정되신다면 여기서 확인해 보세요.
       zh: 网站等的源代码存放处。懂行的朋友可以自由获取或阅读代码。如担心信息收集问题，也可在此查看。
+      zh-tw: 網站等的原始碼存放處。懂程式的朋友可以自由獲取或閱讀程式碼。如擔心資訊收集問題，也可在此查看。

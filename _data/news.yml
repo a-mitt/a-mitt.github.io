@@ -1,10 +1,10 @@
 # お知らせ・予告。新しいものを上に足す。
 #   date: 日付 / type: お知らせ・更新・予告 / work: 作品のファイル名（任意）
-#   text: 本文（Markdown可）。訳を付けるなら { ja: ..., en: ..., ko: ..., zh: ... }
+#   text: 本文（Markdown可）。訳を付けるなら { ja: ..., en: ..., ko: ..., zh: ..., zh-tw: ... }
 # 作品ごとの細かい修正内容は _data/changelog/作品のファイル名.yml へ
 - date: 2026-10-21
   type: お知らせ
-  text: { ja: サイトを開設しました。, en: The site is now open., ko: 사이트를 개설했습니다., zh: 网站开张了。 }
+  text: { ja: サイトを開設しました。, en: The site is now open., ko: 사이트를 개설했습니다., zh: 网站开张了。, zh-tw: 網站開張了。 }
 - date: 2026-10-12
   type: 更新
   work: 2026hpbr
@@ -13,6 +13,7 @@
     en: Released Ver1.1 with bug fixes and usability improvements.
     ko: Ver1.1을 공개했습니다. 버그 수정 및 조작 개선 등.
     zh: 发布了Ver1.1，包含漏洞修复和操作改进等。
+    zh-tw: 發布了Ver1.1，包含錯誤修正和操作改進等。
 # 例:
 # - date: 2026-11-01
 #   type: 予告
