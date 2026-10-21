@@ -38,7 +38,7 @@ links:
       ko: 주로 여기 있어요. 게시물과 공지는 여기가 먼저입니다.
       zh: 主要在这里活动。作品和公告会先在这里发布。
       zh-tw: 主要在這裡活動。作品和公告會先在這裡發布。
-  - label: { ja: X（裏垢）, en: X (alt), ko: X (부계), zh: X（小号）, zh-tw: X（副帳） }
+  - label: { ja: X（裏垢）, en: X (alt), ko: X (부계), zh: X（小号）, zh-tw: X（小帳） }
     handle: "@Lisei_lose_"
     url: https://x.com/Lisei_lose_
     avatar: /assets/img/icon-x-sub.jpg
@@ -57,8 +57,8 @@ links:
       ja: 作品のツイログや小説投稿、サンプル投稿などは主にここです。
       en: Mainly for tweet-log compilations, novels, and samples of my work.
       ko: 작품 트윗 로그, 소설 투고, 샘플 투고 등은 주로 여기입니다.
-      zh: 作品的推文合集、小说投稿、样品投稿等主要在这里。
-      zh-tw: 作品的推文合集、小說投稿、樣品投稿等主要在這裡。
+      zh: 作品的推文合集、小说投稿、试阅投稿等主要在这里。
+      zh-tw: 作品的推文合集、小說投稿、試閱投稿等主要在這裡。
   - label: { ja: wavebox（波箱）, en: wavebox, ko: wavebox, zh: wavebox, zh-tw: wavebox }
     url: https://wavebox.me/wave/9ugc1tw31dw0531f/
     emoji: 🌊📦
