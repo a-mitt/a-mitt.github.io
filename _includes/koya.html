@@ -9,12 +9,16 @@
       <g class="k-all">
         <g class="k-ear k-ear-l"><image href="{{ '/assets/koya/ear-left.webp' | relative_url }}" width="1420" height="1078"/></g>
         <g class="k-ear k-ear-r"><image href="{{ '/assets/koya/ear-right.webp' | relative_url }}" width="1420" height="1078"/></g>
+        <!-- 体の続き（画面の下に隠れている部分。跳ねたときに見える） -->
+        <path class="k-body-fill" d="M140 1040 L1253 1040 L1247 1074 C1182 1176 972 1320 696 1322 C420 1320 210 1176 146 1074 Z"/>
+        <path d="M146 1074 C210 1176 420 1320 696 1322 C972 1320 1182 1176 1247 1074"/>
         <image href="{{ '/assets/koya/body.webp' | relative_url }}" width="1420" height="1078"/>
         <g class="k-open">
           <image href="{{ '/assets/koya/eyes-open.webp' | relative_url }}" width="1420" height="1078"/>
           <g class="k-pupils"><image href="{{ '/assets/koya/pupils.webp' | relative_url }}" width="1420" height="1078"/></g>
         </g>
         <image class="k-closed" href="{{ '/assets/koya/eyes-closed.webp' | relative_url }}" width="1420" height="1078"/>
+        <image class="k-happy-eyes" href="{{ '/assets/koya/eyes-happy.webp' | relative_url }}" width="1420" height="1078"/>
         <path class="k-mouth-closed" d="M592 963 C605 985 638 982 657 950 C678 970 710 982 733 965"/>
         <g class="k-mouth-open">
           <path class="k-tongue" d="M612 966 C616 1000 640 1027 665 1025 C690 1022 705 995 708 973 C690 975 670 966 653 948 C640 960 625 966 612 966 Z"/>
@@ -32,7 +36,6 @@
   if (!el) return;
   var stage = el.parentNode, svg = el.querySelector("svg"), all = el.querySelector(".k-all"), pupils = el.querySelector(".k-pupils");
   var earL = el.querySelector(".k-ear-l"), earR = el.querySelector(".k-ear-r");
-  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var lang = function () { return document.documentElement.dataset.lang || "ja"; };
   var tr = function (o) { return o[lang()] || o.ja; };
   var rand = function (a, b) { return a + Math.random() * (b - a); };
@@ -59,7 +62,7 @@
   // まばたき（ときどき2回）
   function blinkOnce() { set("k-blink", true); setTimeout(function () { set("k-blink", false); }, 130); }
   function blink() {
-    if (!st.asleep && !st.pet) { blinkOnce(); if (Math.random() < 0.35) setTimeout(blinkOnce, 280); }
+    if (!st.asleep && !st.pet && !el.classList.contains("k-happy")) { blinkOnce(); if (Math.random() < 0.35) setTimeout(blinkOnce, 280); }
     setTimeout(blink, rand(1200, 3600));
   }
   // 耳ぴくっ（左・右・両方）
@@ -100,12 +103,13 @@
   window.addEventListener("pointerdown", wake, { passive: true });
   window.addEventListener("scroll", function () { st.idleAt = Date.now(); }, { passive: true });
 
-  // タップ：ぴょこっ（下は固定で上に伸びる）＋耳パタパタ＋ぱちっ＋ひとこと
+  // タップ：ぴょこっと跳ねる＋にっこり＋耳パタパタ＋ひとこと
+  var happyTimer;
   el.addEventListener("click", function () {
     wake();
     st.pet = false; set("k-pet", false); petMoves = 0;
     set("k-pop", false); void el.offsetWidth; set("k-pop", true);
-    blinkOnce();
+    set("k-happy", true); clearTimeout(happyTimer); happyTimer = setTimeout(function () { set("k-happy", false); }, 1300);
     [0, 140, 280, 420].forEach(function (ms, i) { setTimeout(function () { kick(0, i % 2 ? -9 : 12); kick(1, i % 2 ? -9 : 12); }, ms); });
     say(tr(LINES[Math.floor(Math.random() * LINES.length)]));
   });
@@ -137,7 +141,7 @@
   window.addEventListener("resize", function () { show(atBottom()); });
   setInterval(function () { show(atBottom()); }, 300);
 
-  if (!calm) { requestAnimationFrame(frame); setTimeout(blink, 1200); setTimeout(twitch, 2000); }
-  else { set("k-hidden", false); st.shown = true; }
+  // OSの「動きを減らす」設定に関係なく動かす（こやは作品の一部なので）
+  requestAnimationFrame(frame); setTimeout(blink, 1200); setTimeout(twitch, 2000);
 })();
 </script>
