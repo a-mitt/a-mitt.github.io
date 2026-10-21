@@ -2,6 +2,22 @@
 #   date: 日付 / type: お知らせ・更新・予告 / work: 作品のファイル名（任意）
 #   text: 本文（Markdown可）。訳を付けるなら { ja: ..., en: ..., ko: ..., zh: ..., zh-tw: ... }
 # 作品ごとの細かい修正内容は _data/changelog/作品のファイル名.yml へ
+- date: 2026-10-22
+  type: お知らせ
+  text:
+    ja: ページのいちばん下に、こやが住みはじめました。クリックやなでなでで反応します。
+    en: Koya now lives at the very bottom of every page. Click or pet Koya to see a reaction!
+    ko: 페이지 맨 아래에 코야가 살기 시작했습니다. 클릭하거나 쓰다듬으면 반응해요.
+    zh: Koya住进了每个页面的最下方。点击或摸摸它会有反应哦。
+    zh-tw: Koya住進了每個頁面的最下方。點擊或摸摸牠會有反應喔。
+- date: 2026-10-22
+  type: 予告
+  text:
+    ja: エクボを躍らせるサイトと、エクボの手足やこやの肉球を触れるサイトを作る予定です。
+    en: "Coming: a site where you can make Dimple dance, and a site where you can touch Dimple's arms and legs and Koya's paw pads."
+    ko: 에쿠보를 춤추게 하는 사이트와, 에쿠보의 손발이나 코야의 젤리를 만질 수 있는 사이트를 만들 예정입니다.
+    zh: 预定制作让小酒窝跳舞的网站，以及可以摸小酒窝的手脚和Koya肉球的网站。
+    zh-tw: 預定製作讓小酒窩跳舞的網站，以及可以摸小酒窩的手腳和Koya肉球的網站。
 - date: 2026-10-21
   type: 予告
   work: dance-reigen
