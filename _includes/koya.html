@@ -4,7 +4,7 @@
 {%- assign k = site.data.koya -%}
 <div class="koya-stage" aria-hidden="true">
   <div class="koya-bubble" id="koya-bubble"></div>
-  <div class="koya" id="koya" title="こや">
+  <div class="koya k-hidden" id="koya" title="こや">
     <svg viewBox="0 0 1420 1078" class="koya-svg">
       <g class="k-all">
         <g class="k-ear k-ear-l"><image href="{{ '/assets/koya/ear-left.webp' | relative_url }}" width="1420" height="1078"/></g>
@@ -30,31 +30,45 @@
   var LINES = {{ k.lines | jsonify }}, PET = {{ k.pet | jsonify }}, WAKE = {{ k.wake | jsonify }};
   var el = document.getElementById("koya"), bub = document.getElementById("koya-bubble");
   if (!el) return;
-  var svg = el.querySelector("svg"), pupils = el.querySelector(".k-pupils");
+  var stage = el.parentNode, svg = el.querySelector("svg"), all = el.querySelector(".k-all"), pupils = el.querySelector(".k-pupils");
+  var earL = el.querySelector(".k-ear-l"), earR = el.querySelector(".k-ear-r");
   var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var lang = function () { return document.documentElement.dataset.lang || "ja"; };
   var tr = function (o) { return o[lang()] || o.ja; };
   var rand = function (a, b) { return a + Math.random() * (b - a); };
-  var state = { asleep: false, busy: false, idleAt: Date.now() };
+  var st = { asleep: false, pet: false, idleAt: Date.now(), shown: false };
   var set = function (cls, on) { el.classList.toggle(cls, on); };
 
-  // まばたき（ときどき2回）
-  function blink() {
-    if (!state.asleep && !state.busy) {
-      set("k-blink", true);
-      setTimeout(function () { set("k-blink", false); }, 140);
-      if (Math.random() < 0.3) setTimeout(function () { set("k-blink", true); setTimeout(function () { set("k-blink", false); }, 120); }, 300);
-    }
-    setTimeout(blink, rand(2200, 5500));
+  // 耳はばねで動かす（a: 角度, v: 速さ, t: 戻る角度）。外側に開く向きが + になるよう左耳は符号反転
+  var ears = [{ g: earL, cx: 560, cy: 600, s: -1, a: 0, v: 0, t: 0 }, { g: earR, cx: 1060, cy: 740, s: 1, a: 0, v: 0, t: 0 }];
+  function kick(i, power) { ears[i].v += power; }
+  function frame(now) {
+    var tSec = now / 1000;
+    ears.forEach(function (e) {
+      e.t = st.asleep ? 24 : st.pet ? 14 : 0;
+      e.v += (e.t - e.a) * 0.08; e.v *= 0.82; e.a += e.v;
+      e.g.setAttribute("transform", "rotate(" + (e.a * e.s).toFixed(2) + " " + e.cx + " " + e.cy + ")");
+    });
+    // ふわふわ呼吸（寝てるときはゆっくり大きめ）、なでなで中はゆらゆら
+    var b = Math.sin(tSec * (st.asleep ? 1.4 : 2.6)), sx = 1 + b * 0.018, sy = 1 + b * (st.asleep ? 0.06 : 0.045);
+    var rot = st.pet ? Math.sin(tSec * 9) * 2.5 : 0;
+    all.setAttribute("transform", "rotate(" + rot.toFixed(2) + " 710 1078) translate(710 1078) scale(" + sx.toFixed(4) + " " + sy.toFixed(4) + ") translate(-710 -1078)");
+    requestAnimationFrame(frame);
   }
-  // 耳ぴくっ（左右どちらか・両方）
+
+  // まばたき（ときどき2回）
+  function blinkOnce() { set("k-blink", true); setTimeout(function () { set("k-blink", false); }, 130); }
+  function blink() {
+    if (!st.asleep && !st.pet) { blinkOnce(); if (Math.random() < 0.35) setTimeout(blinkOnce, 280); }
+    setTimeout(blink, rand(1200, 3600));
+  }
+  // 耳ぴくっ（左・右・両方）
   function twitch() {
-    if (!state.asleep) {
-      var c = ["k-twitch-l", "k-twitch-r", "k-twitch-both"][Math.floor(Math.random() * 3)];
-      set(c, true);
-      setTimeout(function () { set(c, false); }, 600);
+    if (!st.asleep) {
+      var r = Math.random();
+      if (r < 0.4) kick(0, rand(5, 8)); else if (r < 0.8) kick(1, rand(5, 8)); else { kick(0, 6); kick(1, 6); }
     }
-    setTimeout(twitch, rand(3000, 7000));
+    setTimeout(twitch, rand(1500, 4000));
   }
   // 吹き出し＋口ぱくぱく
   var talkTimer;
@@ -69,46 +83,61 @@
   function look(x, y) {
     var r = svg.getBoundingClientRect();
     var dx = x - (r.left + r.width / 2), dy = y - (r.top + r.height * 0.75);
-    var d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 300);
-    pupils.setAttribute("transform", "translate(" + (dx / d * 40 * k).toFixed(1) + " " + (dy / d * 28 * k).toFixed(1) + ")");
+    // 白目からはみ出さない範囲：左右 ±85、上 35・下 65
+    var d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 200), ux = dx / d, uy = dy / d;
+    pupils.setAttribute("transform", "translate(" + (ux * 85 * k).toFixed(1) + " " + (uy * (uy > 0 ? 65 : 35) * k).toFixed(1) + ")");
   }
   function wake() {
-    state.idleAt = Date.now();
-    if (state.asleep) { state.asleep = false; set("k-sleep", false); say(tr(WAKE), 1800); }
+    st.idleAt = Date.now();
+    if (st.asleep) { st.asleep = false; set("k-sleep", false); kick(0, 10); kick(1, 10); say(tr(WAKE), 1800); }
   }
   // しばらく放っておくと寝る
   setInterval(function () {
-    if (!state.asleep && Date.now() - state.idleAt > 25000) { state.asleep = true; set("k-sleep", true); bub.classList.remove("show"); }
+    if (st.shown && !st.asleep && Date.now() - st.idleAt > 25000) { st.asleep = true; set("k-sleep", true); bub.classList.remove("show"); }
   }, 2000);
 
   window.addEventListener("pointermove", function (e) { look(e.clientX, e.clientY); if (e.pointerType === "mouse") wake(); }, { passive: true });
-  window.addEventListener("scroll", function () { state.idleAt = Date.now(); }, { passive: true });
+  window.addEventListener("pointerdown", wake, { passive: true });
+  window.addEventListener("scroll", function () { st.idleAt = Date.now(); }, { passive: true });
 
-  // タップ：ぴょん＋耳パタパタ＋にっこり＋ひとこと
+  // タップ：ぴょこっ（下は固定で上に伸びる）＋耳パタパタ＋ぱちっ＋ひとこと
   el.addEventListener("click", function () {
     wake();
-    state.busy = true;
-    set("k-hop", false); void el.offsetWidth; set("k-hop", true);
-    set("k-happy", true); set("k-flap", true);
+    st.pet = false; set("k-pet", false); petMoves = 0;
+    set("k-pop", false); void el.offsetWidth; set("k-pop", true);
+    blinkOnce();
+    [0, 140, 280, 420].forEach(function (ms, i) { setTimeout(function () { kick(0, i % 2 ? -9 : 12); kick(1, i % 2 ? -9 : 12); }, ms); });
     say(tr(LINES[Math.floor(Math.random() * LINES.length)]));
-    setTimeout(function () { set("k-happy", false); set("k-flap", false); set("k-hop", false); state.busy = false; }, 1100);
   });
+  el.addEventListener("animationend", function () { set("k-pop", false); set("k-rise", false); });
+
   // なでなで（マウスを頭の上でうろうろ）
   var petMoves = 0, petReset;
   el.addEventListener("pointermove", function (e) {
-    if (e.pointerType !== "mouse" || state.busy) return;
+    if (e.pointerType !== "mouse") return;
     petMoves++;
     clearTimeout(petReset);
-    petReset = setTimeout(function () { petMoves = 0; set("k-pet", false); }, 500);
-    if (petMoves > 25 && !el.classList.contains("k-pet")) { set("k-pet", true); say(tr(PET), 1600); }
+    petReset = setTimeout(function () { petMoves = 0; st.pet = false; set("k-pet", false); }, 600);
+    if (petMoves > 30 && !st.pet) { st.pet = true; set("k-pet", true); say(tr(PET), 1600); }
   });
 
-  // 画面に入ったらひょっこり出てくる
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (es) {
-      es.forEach(function (en) { if (en.isIntersecting) { set("k-peek", true); setTimeout(function () { set("k-peek", false); }, 900); } });
-    }, { threshold: 0.3 }).observe(el);
+  // ページのいちばん下まで来たら、ぴょこっと出てくる（離れたらまた隠れる）
+  function show(on) {
+    if (on === st.shown) return;
+    st.shown = on;
+    set("k-hidden", !on);
+    if (!on) { set("k-rise", false); bub.classList.remove("show"); }
+    if (on) { st.idleAt = Date.now(); set("k-rise", true); setTimeout(function () { kick(0, 12); kick(1, 12); }, 450); }
   }
-  if (!calm) { setTimeout(blink, 1500); setTimeout(twitch, 2500); }
+  function atBottom() {
+    var r = stage.getBoundingClientRect();
+    return r.bottom <= window.innerHeight + 2;
+  }
+  window.addEventListener("scroll", function () { show(atBottom()); }, { passive: true });
+  window.addEventListener("resize", function () { show(atBottom()); });
+  setInterval(function () { show(atBottom()); }, 300);
+
+  if (!calm) { requestAnimationFrame(frame); setTimeout(blink, 1200); setTimeout(twitch, 2000); }
+  else { set("k-hidden", false); st.shown = true; }
 })();
 </script>
