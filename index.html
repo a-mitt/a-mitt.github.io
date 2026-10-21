@@ -4,11 +4,11 @@ layout: default
 {% assign p = site.data.profile %}
 <section class="profile">
   <h1>{{ p.name }} <span class="muted id">@{{ p.id }}</span></h1>
-  <p>{{ p.bio | newline_to_br }}</p>
+  <p>{% include t.html v=p.bio br=true %}</p>
 </section>
 
 <section>
-  <h2>各種サイトへのリンク</h2>
+  <h2>{% include t.html v="各種サイトへのリンク" %}</h2>
   <ul class="links">
   {% for l in p.links %}{% if l.url != "" %}
     <li><a href="{{ l.url }}" rel="me">
@@ -19,8 +19,8 @@ layout: default
         {% if l.badge %}<span class="badge-logo">{% capture f %}icons/{{ l.badge }}.svg{% endcapture %}{% include {{ f }} %}</span>{% endif %}
       </span>
       <span class="txt">
-        <span class="name">{{ l.label }}{% if l.handle %} <span class="handle">{{ l.handle }}</span>{% endif %}</span>
-        {% if l.desc != "" %}<span class="desc">{{ l.desc }}</span>{% endif %}
+        <span class="name">{% include t.html v=l.label %}{% if l.handle %} <span class="handle">{{ l.handle }}</span>{% endif %}</span>
+        {% if l.desc != "" %}<span class="desc">{% include t.html v=l.desc %}</span>{% endif %}
       </span>
       <span class="arrow" aria-hidden="true">›</span>
     </a></li>
@@ -29,14 +29,14 @@ layout: default
 </section>
 
 <section>
-  <h2>お知らせ</h2>
+  <h2>{% include t.html v="お知らせ" %}</h2>
   {% assign latest = site.data.news | slice: 0, 5 %}
   {% include news-list.html items=latest show_work=true %}
-  {% if site.data.news.size > 5 %}<p><a href="{{ '/news/' | relative_url }}">すべて見る →</a></p>{% endif %}
+  {% if site.data.news.size > 5 %}<p><a href="{{ '/news/' | relative_url }}">{% include t.html v="すべて見る →" %}</a></p>{% endif %}
 </section>
 
 <section>
-  <h2>作品</h2>
+  <h2>{% include t.html v="作品" %}</h2>
   <div class="grid">
   {% assign works = site.works | sort: "order" %}
   {% for w in works %}{% include work-card.html work=w %}{% endfor %}

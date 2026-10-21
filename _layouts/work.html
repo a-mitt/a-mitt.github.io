@@ -1,29 +1,42 @@
 ---
 layout: default
 ---
+{% assign cl = site.data.changelog[page.slug] %}
+{% capture up %}{% include updated.html work=page %}{% endcapture %}
 <article class="work">
-  <p class="crumb"><a href="{{ '/' | relative_url }}">← 一覧へ</a></p>
-  {% if page.image %}<img class="hero" src="{{ page.image | relative_url }}" alt="{{ page.title }}のスクリーンショット">{% endif %}
+  <p class="crumb"><a href="{{ '/' | relative_url }}">{% include t.html v="← 一覧へ" %}</a></p>
+  {% if page.image %}<img class="hero" src="{{ page.image | relative_url }}" alt="">{% endif %}
   <div class="work-head">
     <span class="emoji big">{{ page.emoji }}</span>
     <div>
-      <h1>{{ page.title }}</h1>
-      <p class="muted">{{ page.status }}{% if page.version %} ・ v{{ page.version }}{% endif %}{% if page.platforms %} ・ {{ page.platforms | join: " / " }}{% endif %}</p>
+      <h1>{% include t.html v=page.title h=page.i18n.title %}</h1>
+      <p class="muted">{% include t.html v=page.status %}{% if page.version %} ・ v{{ page.version }}{% elsif cl and cl.first.version %} ・ Ver{{ cl.first.version }}{% endif %}{% if page.platforms %} ・ {{ page.platforms | join: " / " }}{% endif %}</p>
+      {% if up != "" %}<p class="muted">{% include t.html v="最終更新" %} {{ up }}{% if cl and cl.size > 0 %} ・ <a href="#changelog">{% include t.html v="更新履歴" %} ↓</a>{% endif %}</p>{% endif %}
     </div>
   </div>
-  <p class="lead">{{ page.description }}</p>
+  <p class="lead">{% include t.html v=page.description h=page.i18n.description %}</p>
 
   <div class="actions">
-    {% if page.play_url %}<a class="btn" href="{{ page.play_url }}">▶ 遊ぶ</a>{% endif %}
-    {% for d in page.downloads %}<a class="btn" href="{{ d.url }}">⬇ {{ d.label }}</a>{% endfor %}
-    {% if page.repo %}<a class="btn ghost" href="{{ page.repo }}">ソース</a>{% endif %}
+    {% if page.play_url %}<a class="btn" href="{{ page.play_url }}">{% include t.html v="▶ 遊ぶ" %}</a>{% endif %}
+    {% for d in page.downloads %}<a class="btn" href="{{ d.url }}">⬇ {% include t.html v=d.label h=d.label_i18n %}</a>{% endfor %}
+    {% if page.repo %}<a class="btn ghost" href="{{ page.repo }}">{% include t.html v="ソース" %}</a>{% endif %}
   </div>
 
   <div class="body">{{ content }}</div>
 
-  {% assign mine = site.data.news | where: "work", page.slug %}
-  {% assign upcoming = mine | where: "type", "予告" %}
-  {% assign history = mine | where_exp: "n", "n.type != '予告'" %}
-  {% if upcoming.size > 0 %}<h2>予告</h2>{% include news-list.html items=upcoming %}{% endif %}
-  {% if history.size > 0 %}<h2>更新履歴</h2>{% include news-list.html items=history %}{% endif %}
+  {% assign upcoming = site.data.news | where: "work", page.slug | where: "type", "予告" %}
+  {% if upcoming.size > 0 %}<h2>{% include t.html v="予告" %}</h2>{% include news-list.html items=upcoming %}{% endif %}
+
+  {% if cl and cl.size > 0 %}
+  <h2 id="changelog">{% include t.html v="更新履歴" %}</h2>
+  {% for r in cl %}
+  <details class="release"{% if forloop.first %} open{% endif %}>
+    <summary><time>{{ r.date | date: "%Y/%m/%d" }}</time>{% if r.version %} <strong>Ver{{ r.version }}</strong>{% endif %}{% if r.note %} <span class="muted">{% include t.html v=r.note %}</span>{% endif %}</summary>
+    {% for sec in r.sections %}
+    {% if sec.heading %}<h3>{% include t.html v=sec.heading %}</h3>{% endif %}
+    <ul>{% for it in sec.items %}<li>{% include t.html v=it %}</li>{% endfor %}</ul>
+    {% endfor %}
+  </details>
+  {% endfor %}
+  {% endif %}
 </article>

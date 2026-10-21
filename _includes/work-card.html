@@ -1,8 +1,10 @@
 {% assign w = include.work %}
 <a class="card" href="{{ w.url | relative_url }}">
   {% if w.image %}<img class="thumb" src="{{ w.image | relative_url }}" alt="" loading="lazy">{% endif %}
-  <div class="card-top"><span class="emoji">{{ w.emoji }}</span><span class="status">{{ w.status }}</span></div>
-  <h3>{{ w.title }}</h3>
-  <p>{{ w.description }}</p>
-  <div class="tags">{% if w.kind == "download" %}<span>ダウンロード</span>{% endif %}{% for t in w.tags %}<span>{{ t }}</span>{% endfor %}</div>
+  <div class="card-top"><span class="emoji">{{ w.emoji }}</span><span class="status">{% include t.html v=w.status %}</span></div>
+  <h3>{% include t.html v=w.title h=w.i18n.title %}</h3>
+  <p>{% include t.html v=w.description h=w.i18n.description %}</p>
+  {% capture up %}{% include updated.html work=w %}{% endcapture %}
+  {% if up != "" %}<p class="updated">{% include t.html v="最終更新" %} {{ up }}</p>{% endif %}
+  <div class="tags">{% if w.kind == "download" %}<span>{% include t.html v="ダウンロード" %}</span>{% endif %}{% for t in w.tags %}<span>{% include t.html v=t %}</span>{% endfor %}</div>
 </a>

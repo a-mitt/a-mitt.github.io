@@ -3,5 +3,5 @@ layout: default
 title: お知らせ一覧
 permalink: /news/
 ---
-<h1>お知らせ一覧</h1>
+<h1>{% include t.html v="お知らせ一覧" %}</h1>
 {% include news-list.html items=site.data.news show_work=true %}

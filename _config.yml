@@ -4,6 +4,9 @@ url: https://a-mitt.github.io
 lang: ja
 timezone: Asia/Tokyo
 
+# 対応言語（先頭が基本の言語）
+langs: [ja, en, ko, zh]
+
 plugins:
   - jekyll-seo-tag
 

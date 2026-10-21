@@ -1,0 +1,22 @@
+# 画面の決まり文句の訳（日本語 → 各言語）。タグや状態もここに足せば訳される。
+裏世界の作品置き場: { en: "Urasekai's Works", ko: "裏世界의 작품 보관소", zh: "裏世界的作品集" }
+各種サイトへのリンク: { en: Links, ko: 각종 링크, zh: 各平台链接 }
+お知らせ: { en: News, ko: 공지, zh: 公告 }
+お知らせ一覧: { en: All news, ko: 공지 목록, zh: 全部公告 }
+すべて見る →: { en: See all →, ko: 모두 보기 →, zh: 查看全部 → }
+作品: { en: Works, ko: 작품, zh: 作品 }
+← 一覧へ: { en: ← Back, ko: ← 목록으로, zh: ← 返回列表 }
+▶ 遊ぶ: { en: ▶ Play, ko: ▶ 플레이, zh: ▶ 开始游玩 }
+ソース: { en: Source, ko: 소스, zh: 源代码 }
+予告: { en: Coming soon, ko: 예고, zh: 预告 }
+更新: { en: Update, ko: 업데이트, zh: 更新 }
+更新履歴: { en: Changelog, ko: 업데이트 내역, zh: 更新记录 }
+最終更新: { en: Last updated, ko: 최종 업데이트, zh: 最后更新 }
+ダウンロード: { en: Download, ko: 다운로드, zh: 下载 }
+公開中: { en: Available, ko: 공개 중, zh: 公开中 }
+制作中: { en: In development, ko: 제작 중, zh: 制作中 }
+体験版: { en: Demo, ko: 체험판, zh: 试玩版 }
+ゲーム: { en: Game, ko: 게임, zh: 游戏 }
+二次創作: { en: Fan work, ko: 2차 창작, zh: 同人 }
+ブラウザ: { en: Browser, ko: 브라우저, zh: 浏览器 }
+ネタ: { en: Just for fun, ko: 개그, zh: 整活 }

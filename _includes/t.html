@@ -1,0 +1,18 @@
+{%- comment -%}
+  多言語テキスト。v に文字列（日本語）か {ja, en, ko, zh} を渡す。
+  h に訳の {en, ko, zh} を渡すか、_data/ui.yml に同じ日本語があればそれを使う。訳が無い言語は日本語を出す。
+  md=true で Markdown として出力（tag=div 以外は <p> を外す）、br=true で改行を <br> に。
+{%- endcomment -%}
+{%- assign _v = include.v -%}
+{%- assign _h = include.h -%}
+{%- if _v.ja -%}{%- assign _h = _v -%}{%- assign _v = _v.ja -%}{%- elsif _h == nil -%}{%- assign _h = site.data.ui[_v] -%}{%- endif -%}
+{%- assign _tag = include.tag | default: "span" -%}
+{%- if _h -%}
+{%- for l in site.langs -%}
+{%- assign _x = _h[l] | default: _v -%}{%- if l == "ja" -%}{%- assign _x = _v -%}{%- endif -%}
+{%- if include.md -%}{%- assign _x = _x | markdownify -%}{%- unless _tag == "div" -%}{%- assign _x = _x | remove: "<p>" | remove: "</p>" | strip -%}{%- endunless -%}{%- elsif include.br -%}{%- assign _x = _x | strip | newline_to_br -%}{%- endif -%}
+<{{ _tag }} data-l="{{ l }}">{{ _x }}</{{ _tag }}>
+{%- endfor -%}
+{%- else -%}
+{%- if include.md -%}{%- if _tag == "div" -%}{{ _v | markdownify }}{%- else -%}{{ _v | markdownify | remove: "<p>" | remove: "</p>" | strip }}{%- endif -%}{%- elsif include.br -%}{{ _v | strip | newline_to_br }}{%- else -%}{{ _v }}{%- endif -%}
+{%- endif -%}

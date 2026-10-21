@@ -1,0 +1,3 @@
+{%- comment -%}作品の最終更新日：更新履歴の先頭の日付、無ければ front matter の updated{%- endcomment -%}
+{%- assign _cl = site.data.changelog[include.work.slug] -%}
+{%- if _cl and _cl.size > 0 -%}{{ _cl.first.date | date: "%Y/%m/%d" }}{%- elsif include.work.updated -%}{{ include.work.updated | date: "%Y/%m/%d" }}{%- endif -%}
