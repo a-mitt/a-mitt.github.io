@@ -2,18 +2,25 @@ name: 裏世界
 id: a-mitt
 # 自己紹介（改行してOK）
 bio: |
-  ゲームやちょっとしたサイトを作っています。
-  ここに自己紹介を書いてください。
+  れーれんあらららに狂っているオタク。絵と文字とゲームと動画を吐くことがある。
+  このサイトは作ったものへのリンクや紹介・アプデ告知などのために作成されました。
+  気軽にお気に入り登録してね。
 
 # url が空のものは表示されません
 links:
-  - label: X (Twitter)
-    url: ""            # 例: https://x.com/xxxx
-  - label: pixiv
-    url: ""            # 例: https://www.pixiv.net/users/0000
+  - label: X 表垢 @NLisei_Kotowari
+    url: https://x.com/NLisei_Kotowari
+  - label: X 裏垢 @Lisei_lose_
+    url: https://x.com/Lisei_lose_
+  - label: pixiv（Norah）
+    url: https://www.pixiv.net/users/45276382
   - label: 波箱
-    url: ""            # 例: https://wavebox.me/wave/xxxx/
+    url: https://wavebox.me/wave/b6gm4wvcxjvu2gug/
   - label: BOOTH
     url: ""            # 例: https://xxxx.booth.pm/
+  - label: YouTube
+    url: ""            # 例: https://www.youtube.com/@xxxx
+  - label: TikTok
+    url: ""            # 例: https://www.tiktok.com/@xxxx
   - label: GitHub
     url: https://github.com/a-mitt
