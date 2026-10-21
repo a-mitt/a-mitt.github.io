@@ -119,7 +119,7 @@ h2 { font-size: 1.2rem; margin: 40px 0 12px; padding-bottom: 4px; border-bottom:
   border-right: 2px solid var(--text); border-bottom: 2px solid var(--text); transform: rotate(45deg); }
 .koya-bubble.show { opacity: 1; transform: none; }
 @keyframes k-rise { 0% { transform: translateY(110%); } 70% { transform: translateY(-4%) scale(.97, 1.06); } 100% { transform: none; } }
-@keyframes k-pop { 0%, 100% { transform: none; } 15% { transform: scale(1.1, .86); } 40% { transform: translateY(-30px) scale(.95, 1.08); } 60% { transform: translateY(-30px) scale(.98, 1.03); } 82% { transform: scale(1.06, .93); } }
+@keyframes k-pop { 0%, 100% { transform: none; } 15% { transform: scale(1.05, .93); } 40% { transform: translateY(-14px) scale(.98, 1.04); } 60% { transform: translateY(-14px) scale(.99, 1.01); } 82% { transform: scale(1.03, .97); } }
 @keyframes k-z { 0% { opacity: 0; transform: translate(0, 10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(14px, -24px); } }
 @keyframes k-mouth-a { 0% { visibility: visible; } 50% { visibility: hidden; } }
 @keyframes k-mouth-b { 0% { visibility: hidden; } 50% { visibility: visible; } }

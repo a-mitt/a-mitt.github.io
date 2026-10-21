@@ -53,7 +53,7 @@
       e.g.setAttribute("transform", "rotate(" + (e.a * e.s).toFixed(2) + " " + e.cx + " " + e.cy + ")");
     });
     // ふわふわ呼吸（寝てるときはゆっくり大きめ）、なでなで中はゆらゆら
-    var b = Math.sin(tSec * (st.asleep ? 1.4 : 2.6)), sx = 1 + b * 0.018, sy = 1 + b * (st.asleep ? 0.06 : 0.045);
+    var b = (Math.sin(tSec * (st.asleep ? 1.2 : 1.96)) + 1) / 2, sx = 1 + b * 0.012, sy = 1 + b * (st.asleep ? 0.04 : 0.03);
     var rot = st.pet ? Math.sin(tSec * 9) * 2.5 : 0;
     all.setAttribute("transform", "rotate(" + rot.toFixed(2) + " 710 1078) translate(710 1078) scale(" + sx.toFixed(4) + " " + sy.toFixed(4) + ") translate(-710 -1078)");
     requestAnimationFrame(frame);
