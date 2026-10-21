@@ -1,10 +1,3 @@
-/* 選んだ言語以外を隠す */
-html:not([data-lang="ja"]) [data-l="ja"],
-html:not([data-lang="en"]) [data-l="en"],
-html:not([data-lang="ko"]) [data-l="ko"],
-html:not([data-lang="zh"]) [data-l="zh"]
-{ display: none !important; }
-
 :root {
   --bg: #f7f6f2; --card: #fff; --text: #22211f; --muted: #6b6860;
   --line: #e4e1d8; --accent: #3b5bdb; --tag: #eef1fb; --warn: #c2410c;

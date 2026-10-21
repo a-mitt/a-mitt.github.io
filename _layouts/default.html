@@ -17,8 +17,16 @@
     document.documentElement.lang = l === "zh" ? "zh-CN" : l;
   })();
 </script>
+<style>
+/* 選んだ言語以外を隠す */
+html:not([data-lang="ja"]) [data-l="ja"],
+html:not([data-lang="en"]) [data-l="en"],
+html:not([data-lang="ko"]) [data-l="ko"],
+html:not([data-lang="zh"]) [data-l="zh"]
+{ display: none !important; }
+</style>
 {% seo %}
-<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
 <header class="site-header">
