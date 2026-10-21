@@ -115,15 +115,30 @@
   });
   el.addEventListener("animationend", function () { set("k-pop", false); set("k-rise", false); });
 
-  // なでなで（マウスを頭の上でうろうろ）
-  var petMoves = 0, petReset;
-  el.addEventListener("pointermove", function (e) {
-    if (e.pointerType !== "mouse") return;
-    petMoves++;
-    clearTimeout(petReset);
-    petReset = setTimeout(function () { petMoves = 0; st.pet = false; set("k-pet", false); }, 600);
-    if (petMoves > 30 && !st.pet) { st.pet = true; set("k-pet", true); say(tr(PET), 1600); }
+  // なでなで：マウスは頭の上でうろうろ、スマホは指でこやをなでる
+  var petMoves = 0, petReset, rub = null, petted = false;
+  function petStop() { petMoves = 0; st.pet = false; set("k-pet", false); }
+  function petStart() { if (!st.pet) { st.pet = true; set("k-pet", true); say(tr(PET), 1600); } }
+  el.addEventListener("pointerdown", function (e) {
+    if (e.pointerType !== "mouse") { rub = { x: e.clientX, y: e.clientY, d: 0 }; petted = false; }
   });
+  el.addEventListener("pointermove", function (e) {
+    clearTimeout(petReset);
+    if (e.pointerType === "mouse") {
+      petMoves++;
+      petReset = setTimeout(petStop, 600);
+      if (petMoves > 30) petStart();
+    } else if (rub) {
+      rub.d += Math.hypot(e.clientX - rub.x, e.clientY - rub.y);
+      rub.x = e.clientX; rub.y = e.clientY;
+      if (rub.d > 60) { petted = true; wake(); petStart(); }
+    }
+  });
+  ["pointerup", "pointercancel"].forEach(function (t) {
+    el.addEventListener(t, function () { rub = null; petReset = setTimeout(petStop, 700); });
+  });
+  // なでたあとに指を離したときはクリック扱いにしない
+  el.addEventListener("click", function (e) { if (petted) { petted = false; e.stopImmediatePropagation(); } }, true);
 
   // ページのいちばん下まで来たら、ぴょこっと出てくる（離れたらまた隠れる）
   function show(on) {
