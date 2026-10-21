@@ -1,0 +1,11 @@
+# こやのセリフ（クリック・タップしたときにランダムで1つ）。訳が無い言語は日本語が出る
+lines:
+  - { ja: こやっ！, en: Koya!, ko: 코야!, zh: Koya！, zh-tw: Koya！ }
+  - { ja: いらっしゃい〜, en: Welcome~, ko: 어서 와~, zh: 欢迎光临～, zh-tw: 歡迎光臨～ }
+  - { ja: なでて〜, en: Pet me~, ko: 쓰다듬어 줘~, zh: 摸摸我～, zh-tw: 摸摸我～ }
+  - { ja: ゆっくりしていってね, en: Make yourself at home, ko: 천천히 둘러보고 가, zh: 慢慢逛哦, zh-tw: 慢慢逛喔 }
+  - { ja: 作品も見てってね！, en: Check out the works too!, ko: 작품도 보고 가!, zh: 也看看作品吧！, zh-tw: 也看看作品吧！ }
+  - { ja: ぴこぴこ, en: "*wiggle wiggle*", ko: 쫑긋쫑긋, zh: 耳朵动动, zh-tw: 耳朵動動 }
+  - { ja: えへへ, en: Hehe, ko: 에헤헤, zh: 嘿嘿, zh-tw: 嘿嘿 }
+pet: { ja: なでなで…♡, en: Pat pat… ♡, ko: 쓰담쓰담… ♡, zh: 摸摸…♡, zh-tw: 摸摸…♡ }
+wake: { ja: はっ！起きてた！, en: Huh! I was awake!, ko: 앗! 안 잤어!, zh: 啊！我没睡！, zh-tw: 啊！我沒睡！ }

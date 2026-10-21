@@ -1,0 +1,114 @@
+{%- comment -%}
+  ページ下のこや。パーツ画像は assets/koya/（元絵 2000x1458 を x280,y380 から 1420x1078 で切り出して半分に縮小）。
+{%- endcomment -%}
+{%- assign k = site.data.koya -%}
+<div class="koya-stage" aria-hidden="true">
+  <div class="koya-bubble" id="koya-bubble"></div>
+  <div class="koya" id="koya" title="こや">
+    <svg viewBox="0 0 1420 1078" class="koya-svg">
+      <g class="k-all">
+        <g class="k-ear k-ear-l"><image href="{{ '/assets/koya/ear-left.webp' | relative_url }}" width="1420" height="1078"/></g>
+        <g class="k-ear k-ear-r"><image href="{{ '/assets/koya/ear-right.webp' | relative_url }}" width="1420" height="1078"/></g>
+        <image href="{{ '/assets/koya/body.webp' | relative_url }}" width="1420" height="1078"/>
+        <g class="k-open">
+          <image href="{{ '/assets/koya/eyes-open.webp' | relative_url }}" width="1420" height="1078"/>
+          <g class="k-pupils"><image href="{{ '/assets/koya/pupils.webp' | relative_url }}" width="1420" height="1078"/></g>
+        </g>
+        <image class="k-closed" href="{{ '/assets/koya/eyes-closed.webp' | relative_url }}" width="1420" height="1078"/>
+        <path class="k-mouth-closed" d="M592 963 C605 985 638 982 657 950 C678 970 710 982 733 965"/>
+        <g class="k-mouth-open">
+          <path class="k-tongue" d="M612 966 C616 1000 640 1027 665 1025 C690 1022 705 995 708 973 C690 975 670 966 653 948 C640 960 625 966 612 966 Z"/>
+          <path d="M588 940 C595 960 625 970 653 946 C675 962 710 976 734 972"/>
+        </g>
+      </g>
+    </svg>
+    <div class="koya-zzz"><span>z</span><span>z</span><span>Z</span></div>
+  </div>
+</div>
+<script>
+(function () {
+  var LINES = {{ k.lines | jsonify }}, PET = {{ k.pet | jsonify }}, WAKE = {{ k.wake | jsonify }};
+  var el = document.getElementById("koya"), bub = document.getElementById("koya-bubble");
+  if (!el) return;
+  var svg = el.querySelector("svg"), pupils = el.querySelector(".k-pupils");
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var lang = function () { return document.documentElement.dataset.lang || "ja"; };
+  var tr = function (o) { return o[lang()] || o.ja; };
+  var rand = function (a, b) { return a + Math.random() * (b - a); };
+  var state = { asleep: false, busy: false, idleAt: Date.now() };
+  var set = function (cls, on) { el.classList.toggle(cls, on); };
+
+  // まばたき（ときどき2回）
+  function blink() {
+    if (!state.asleep && !state.busy) {
+      set("k-blink", true);
+      setTimeout(function () { set("k-blink", false); }, 140);
+      if (Math.random() < 0.3) setTimeout(function () { set("k-blink", true); setTimeout(function () { set("k-blink", false); }, 120); }, 300);
+    }
+    setTimeout(blink, rand(2200, 5500));
+  }
+  // 耳ぴくっ（左右どちらか・両方）
+  function twitch() {
+    if (!state.asleep) {
+      var c = ["k-twitch-l", "k-twitch-r", "k-twitch-both"][Math.floor(Math.random() * 3)];
+      set(c, true);
+      setTimeout(function () { set(c, false); }, 600);
+    }
+    setTimeout(twitch, rand(3000, 7000));
+  }
+  // 吹き出し＋口ぱくぱく
+  var talkTimer;
+  function say(text, ms) {
+    bub.textContent = text;
+    bub.classList.add("show");
+    set("k-talk", true);
+    clearTimeout(talkTimer);
+    talkTimer = setTimeout(function () { bub.classList.remove("show"); set("k-talk", false); }, ms || 2200);
+  }
+  // 目が指・マウスを追う
+  function look(x, y) {
+    var r = svg.getBoundingClientRect();
+    var dx = x - (r.left + r.width / 2), dy = y - (r.top + r.height * 0.75);
+    var d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 300);
+    pupils.setAttribute("transform", "translate(" + (dx / d * 40 * k).toFixed(1) + " " + (dy / d * 28 * k).toFixed(1) + ")");
+  }
+  function wake() {
+    state.idleAt = Date.now();
+    if (state.asleep) { state.asleep = false; set("k-sleep", false); say(tr(WAKE), 1800); }
+  }
+  // しばらく放っておくと寝る
+  setInterval(function () {
+    if (!state.asleep && Date.now() - state.idleAt > 25000) { state.asleep = true; set("k-sleep", true); bub.classList.remove("show"); }
+  }, 2000);
+
+  window.addEventListener("pointermove", function (e) { look(e.clientX, e.clientY); if (e.pointerType === "mouse") wake(); }, { passive: true });
+  window.addEventListener("scroll", function () { state.idleAt = Date.now(); }, { passive: true });
+
+  // タップ：ぴょん＋耳パタパタ＋にっこり＋ひとこと
+  el.addEventListener("click", function () {
+    wake();
+    state.busy = true;
+    set("k-hop", false); void el.offsetWidth; set("k-hop", true);
+    set("k-happy", true); set("k-flap", true);
+    say(tr(LINES[Math.floor(Math.random() * LINES.length)]));
+    setTimeout(function () { set("k-happy", false); set("k-flap", false); set("k-hop", false); state.busy = false; }, 1100);
+  });
+  // なでなで（マウスを頭の上でうろうろ）
+  var petMoves = 0, petReset;
+  el.addEventListener("pointermove", function (e) {
+    if (e.pointerType !== "mouse" || state.busy) return;
+    petMoves++;
+    clearTimeout(petReset);
+    petReset = setTimeout(function () { petMoves = 0; set("k-pet", false); }, 500);
+    if (petMoves > 25 && !el.classList.contains("k-pet")) { set("k-pet", true); say(tr(PET), 1600); }
+  });
+
+  // 画面に入ったらひょっこり出てくる
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { set("k-peek", true); setTimeout(function () { set("k-peek", false); }, 900); } });
+    }, { threshold: 0.3 }).observe(el);
+  }
+  if (!calm) { setTimeout(blink, 1500); setTimeout(twitch, 2500); }
+})();
+</script>

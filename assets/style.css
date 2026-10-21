@@ -87,3 +87,56 @@ h2 { font-size: 1.2rem; margin: 40px 0 12px; padding-bottom: 4px; border-bottom:
 .profile .avatar { grid-row: 1; width: 96px; height: 96px; border-radius: 50%; border: 1px solid var(--line); background: #fff; }
 .profile h1 { grid-row: 1; margin: 0; }
 .profile > p { grid-column: 1 / -1; }
+
+/* こや */
+.koya-stage { position: relative; max-width: 880px; margin: 40px auto 0; height: 190px; overflow-x: visible; overflow-y: clip; display: flex; justify-content: center; align-items: flex-end; }
+.koya { position: relative; width: 250px; cursor: pointer; transform-origin: 50% 100%; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.koya-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.koya-svg path { fill: none; stroke: #000; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+.koya-svg .k-tongue { fill: #e3857a; }
+.k-all { transform-box: view-box; transform-origin: 710px 1078px; animation: k-breathe 3.2s ease-in-out infinite; }
+.k-ear { transform-box: view-box; transition: transform .25s ease; }
+.k-ear-l { transform-origin: 560px 600px; }
+.k-ear-r { transform-origin: 1060px 740px; }
+.k-pupils { transition: transform .12s linear; }
+.k-closed, .k-mouth-open { display: none; }
+.k-blink .k-open, .k-happy .k-open, .k-pet .k-open, .k-sleep .k-open { display: none; }
+.k-blink .k-closed, .k-happy .k-closed, .k-pet .k-closed, .k-sleep .k-closed { display: inline; }
+.k-talk .k-mouth-closed { animation: k-mouth-a .36s steps(1) infinite; }
+.k-talk .k-mouth-open { display: inline; animation: k-mouth-b .36s steps(1) infinite; }
+.k-twitch-l .k-ear-l, .k-twitch-both .k-ear-l { animation: k-twitch-l .5s ease; }
+.k-twitch-r .k-ear-r, .k-twitch-both .k-ear-r { animation: k-twitch-r .5s ease; }
+.k-flap .k-ear-l { animation: k-flap-l .22s ease-in-out 4 alternate; }
+.k-flap .k-ear-r { animation: k-flap-r .22s ease-in-out 4 alternate; }
+.k-pet .k-ear-l { transform: rotate(-14deg); }
+.k-pet .k-ear-r { transform: rotate(14deg); }
+.k-pet .k-all { animation: k-wiggle .5s ease-in-out infinite; }
+.k-sleep .k-ear-l { transform: rotate(-22deg); }
+.k-sleep .k-ear-r { transform: rotate(22deg); }
+.k-sleep .k-all { animation-duration: 5s; }
+.k-hop { animation: k-hop .6s cubic-bezier(.3,.7,.4,1); }
+.k-peek { animation: k-peek .9s cubic-bezier(.2,.8,.3,1.2); }
+.koya-zzz { position: absolute; right: 8%; top: 4%; display: none; font-weight: 700; color: var(--muted); }
+.koya-zzz span { display: inline-block; animation: k-z 2.4s ease-in-out infinite; opacity: 0; }
+.koya-zzz span:nth-child(2) { animation-delay: .5s; font-size: 1.2em; }
+.koya-zzz span:nth-child(3) { animation-delay: 1s; font-size: 1.5em; }
+.k-sleep .koya-zzz { display: block; }
+.koya-bubble { position: absolute; left: calc(50% + 80px); top: 8px; max-width: 200px; padding: 6px 12px; border-radius: 14px;
+  background: var(--card); border: 2px solid var(--text); font-size: .9rem; font-weight: 700; white-space: nowrap;
+  opacity: 0; transform: translateY(6px) scale(.9); transition: opacity .2s, transform .2s; pointer-events: none; z-index: 1; }
+.koya-bubble::after { content: ""; position: absolute; left: 14px; bottom: -8px; width: 12px; height: 12px; background: var(--card);
+  border-right: 2px solid var(--text); border-bottom: 2px solid var(--text); transform: rotate(45deg); }
+.koya-bubble.show { opacity: 1; transform: none; }
+@keyframes k-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.012, 1.03); } }
+@keyframes k-twitch-l { 0%, 100% { transform: none; } 30% { transform: rotate(-12deg); } 60% { transform: rotate(4deg); } }
+@keyframes k-twitch-r { 0%, 100% { transform: none; } 30% { transform: rotate(12deg); } 60% { transform: rotate(-4deg); } }
+@keyframes k-flap-l { from { transform: rotate(0); } to { transform: rotate(-18deg); } }
+@keyframes k-flap-r { from { transform: rotate(0); } to { transform: rotate(18deg); } }
+@keyframes k-wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-2deg); } 75% { transform: rotate(2deg); } }
+@keyframes k-hop { 0%, 100% { transform: none; } 15% { transform: scale(1.06, .92); } 45% { transform: translateY(-28px) scale(.96, 1.05); } 75% { transform: scale(1.04, .95); } }
+@keyframes k-peek { from { transform: translateY(70%); } to { transform: none; } }
+@keyframes k-z { 0% { opacity: 0; transform: translate(0, 10px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(14px, -24px); } }
+@keyframes k-mouth-a { 0% { visibility: visible; } 50% { visibility: hidden; } }
+@keyframes k-mouth-b { 0% { visibility: hidden; } 50% { visibility: visible; } }
+@media (max-width: 560px) { .koya-stage { height: 150px; } .koya { width: 200px; } .koya-bubble { left: auto; right: 8px; top: 2px; } }
+@media (prefers-reduced-motion: reduce) { .k-all, .k-hop, .k-peek, .k-pet .k-all { animation: none !important; } }

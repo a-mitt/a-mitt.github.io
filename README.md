@@ -25,3 +25,10 @@ GitHub Pages の Jekyll でそのまま公開される（ビルド設定不要�
 ## 翻訳のチェック
 
 `python tools/translation_check.py` で `translation-check.md` ができる（PyYAML が必要）。中身をそのまま他のAIに渡すと、訳の誤りや不自然な箇所を表で返してくれる。
+
+## こや（ページ下のキャラ）
+
+- パーツ画像：`assets/koya/`（元絵 2000x1458 を x280・y380 から 1420x1078 で切り出し、半分に縮小した透過 webp）
+- セリフ：`_data/koya.yml`
+- 動き：`_includes/koya.html`（JS）と `assets/style.css` の「こや」の部分
+- 口は SVG で描いている（`k-mouth-closed` / `k-mouth-open`）。左耳は右耳を反転したもの
