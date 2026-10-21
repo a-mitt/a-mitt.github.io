@@ -1,6 +1,6 @@
 <ul class="news">
 {% for n in include.items %}
-  {% assign w = site.works | where: "slug", n.work | first %}
+  {% assign w = nil %}{% if n.work %}{% assign w = site.works | where: "slug", n.work | first %}{% endif %}
   <li>
     <time>{{ n.date | date: "%Y/%m/%d" }}</time>
     <span class="badge badge-{{ n.type }}">{% include t.html v=n.type %}</span>
