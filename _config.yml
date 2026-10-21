@@ -1,0 +1,19 @@
+title: 裏世界の作品置き場
+description: 裏世界（a-mitt）が作ったゲームやサイトの紹介・配布ページ
+url: https://a-mitt.github.io
+lang: ja
+timezone: Asia/Tokyo
+
+plugins:
+  - jekyll-seo-tag
+
+collections:
+  works:
+    output: true
+    permalink: /works/:name/
+
+defaults:
+  - scope: { type: works }
+    values: { layout: work }
+
+exclude: [README.md, _templates]

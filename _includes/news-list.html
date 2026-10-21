@@ -1,0 +1,10 @@
+<ul class="news">
+{% for n in include.items %}
+  {% assign w = site.works | where: "slug", n.work | first %}
+  <li>
+    <time>{{ n.date | date: "%Y/%m/%d" }}</time>
+    <span class="badge badge-{{ n.type }}">{{ n.type }}</span>
+    <div>{% if w and include.show_work %}<a href="{{ w.url | relative_url }}">{{ w.title }}</a>：{% endif %}{{ n.text | markdownify | remove: '<p>' | remove: '</p>' }}</div>
+  </li>
+{% endfor %}
+</ul>

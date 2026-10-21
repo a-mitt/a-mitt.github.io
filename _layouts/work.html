@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<article class="work">
+  <p class="crumb"><a href="{{ '/' | relative_url }}">← 一覧へ</a></p>
+  <div class="work-head">
+    <span class="emoji big">{{ page.emoji }}</span>
+    <div>
+      <h1>{{ page.title }}</h1>
+      <p class="muted">{{ page.status }}{% if page.version %} ・ v{{ page.version }}{% endif %}{% if page.platforms %} ・ {{ page.platforms | join: " / " }}{% endif %}</p>
+    </div>
+  </div>
+  <p class="lead">{{ page.description }}</p>
+
+  <div class="actions">
+    {% if page.play_url %}<a class="btn" href="{{ page.play_url }}">▶ 遊ぶ</a>{% endif %}
+    {% for d in page.downloads %}<a class="btn" href="{{ d.url }}">⬇ {{ d.label }}</a>{% endfor %}
+    {% if page.repo %}<a class="btn ghost" href="{{ page.repo }}">ソース</a>{% endif %}
+  </div>
+
+  <div class="body">{{ content }}</div>
+
+  {% assign mine = site.data.news | where: "work", page.slug %}
+  {% assign upcoming = mine | where: "type", "予告" %}
+  {% assign history = mine | where_exp: "n", "n.type != '予告'" %}
+  {% if upcoming.size > 0 %}<h2>予告</h2>{% include news-list.html items=upcoming %}{% endif %}
+  {% if history.size > 0 %}<h2>更新履歴</h2>{% include news-list.html items=history %}{% endif %}
+</article>

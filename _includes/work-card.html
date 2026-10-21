@@ -1,0 +1,7 @@
+{% assign w = include.work %}
+<a class="card" href="{{ w.url | relative_url }}">
+  <div class="card-top"><span class="emoji">{{ w.emoji }}</span><span class="status">{{ w.status }}</span></div>
+  <h3>{{ w.title }}</h3>
+  <p>{{ w.description }}</p>
+  <div class="tags">{% if w.kind == "download" %}<span>ダウンロード</span>{% endif %}{% for t in w.tags %}<span>{{ t }}</span>{% endfor %}</div>
+</a>

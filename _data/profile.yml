@@ -1,0 +1,19 @@
+name: 裏世界
+id: a-mitt
+# 自己紹介（改行してOK）
+bio: |
+  ゲームやちょっとしたサイトを作っています。
+  ここに自己紹介を書いてください。
+
+# url が空のものは表示されません
+links:
+  - label: X (Twitter)
+    url: ""            # 例: https://x.com/xxxx
+  - label: pixiv
+    url: ""            # 例: https://www.pixiv.net/users/0000
+  - label: 波箱
+    url: ""            # 例: https://wavebox.me/wave/xxxx/
+  - label: BOOTH
+    url: ""            # 例: https://xxxx.booth.pm/
+  - label: GitHub
+    url: https://github.com/a-mitt
