@@ -3,6 +3,15 @@
 #   text: 本文（Markdown可）。訳を付けるなら { ja: ..., en: ..., ko: ..., zh: ..., zh-tw: ... }
 # 作品ごとの細かい修正内容は _data/changelog/作品のファイル名.yml へ
 - date: 2026-10-21
+  type: 予告
+  work: dance-reigen
+  text:
+    ja: 霊幻のダンス中断モード、別のダンスモード、ただ止まって見てくれるモードを追加予定です。
+    en: "Coming: a mode where Reigen pauses his dance, a different dance mode, and a mode where he just stands still and watches you."
+    ko: 레이겐의 춤 중단 모드, 다른 춤 모드, 그냥 멈춰서 바라봐 주는 모드를 추가할 예정입니다.
+    zh: 预定新增灵幻的舞蹈中断模式、另一种舞蹈模式、只是静静站着看着你的模式。
+    zh-tw: 預定新增靈幻的舞蹈中斷模式、另一種舞蹈模式、只是靜靜站著看著你的模式。
+- date: 2026-10-21
   type: お知らせ
   text: { ja: サイトを開設しました。, en: The site is now open., ko: 사이트를 개설했습니다., zh: 网站开张了。, zh-tw: 網站開張了。 }
 - date: 2026-10-12
