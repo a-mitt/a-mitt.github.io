@@ -90,8 +90,7 @@ h2 { font-size: 1.2rem; margin: 40px 0 12px; padding-bottom: 4px; border-bottom:
 
 /* こや */
 .koya-stage { position: relative; max-width: 880px; margin: 24px auto 0; height: 260px; overflow-x: visible; overflow-y: clip; display: flex; justify-content: center; align-items: flex-end; }
-.koya { position: relative; width: 250px; cursor: pointer; transform-origin: 50% 100%; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
-  transition: transform .35s ease-in; }
+.koya { position: relative; width: 250px; cursor: pointer; transform-origin: 50% 100%; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
 .koya-svg { display: block; width: 100%; height: auto; overflow: visible; }
 .koya-svg path { fill: none; stroke: #000; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
 .koya-svg .k-tongue { fill: #e3857a; }

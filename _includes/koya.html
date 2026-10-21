@@ -148,13 +148,15 @@
     if (!on) { set("k-rise", false); bub.classList.remove("show"); }
     if (on) { st.idleAt = Date.now(); set("k-rise", true); setTimeout(function () { kick(0, 12); kick(1, 12); }, 450); }
   }
-  function atBottom() {
-    var r = stage.getBoundingClientRect();
-    return r.bottom <= window.innerHeight + 2;
+  // 出る：こやの場所が全部見えたとき／隠れる：画面から完全に外れたとき（境目でぴょこぴょこ繰り返さないように）
+  function check() {
+    var r = stage.getBoundingClientRect(), h = window.innerHeight;
+    if (!st.shown && r.bottom <= h + 2) show(true);
+    else if (st.shown && r.top >= h) show(false);
   }
-  window.addEventListener("scroll", function () { show(atBottom()); }, { passive: true });
-  window.addEventListener("resize", function () { show(atBottom()); });
-  setInterval(function () { show(atBottom()); }, 300);
+  window.addEventListener("scroll", check, { passive: true });
+  window.addEventListener("resize", check);
+  setInterval(check, 300);
 
   // OSの「動きを減らす」設定に関係なく動かす（こやは作品の一部なので）
   requestAnimationFrame(frame); setTimeout(blink, 1200); setTimeout(twitch, 2000);
