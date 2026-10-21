@@ -23,6 +23,14 @@ bio:
     本站用於放置我的作品連結、介紹及更新公告等。
     歡迎隨手收藏。
 
+# サイトの一番下に出す注意書き
+notice:
+  ja: 当サイトの二次創作はすべてファンアート（FA）です。原作・公式とは一切関係ありません。
+  en: All fan works on this site are fan art (FA). They are unofficial and have no connection to the original work or its creators.
+  ko: 이 사이트의 2차 창작은 모두 팬아트(FA)입니다. 원작・공식과는 일절 관계가 없습니다.
+  zh: 本站所有同人作品均为粉丝创作（FA），与原作及官方无任何关系。
+  zh-tw: 本站所有同人作品皆為粉絲創作（FA），與原作及官方無任何關係。
+
 # 各種サイトへのリンク（url が空のものは表示されません）
 #   avatar: 左に出すアイコン画像 / logo: _includes/icons/ のロゴ名 / emoji: 絵文字アイコン
 #   badge: アイコン右下に重ねる小さなロゴ名

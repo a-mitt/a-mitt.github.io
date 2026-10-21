@@ -15,7 +15,11 @@ collections:
     output: true
     permalink: /works/:name/
 
+logo: /assets/img/site-icon.png
+
 defaults:
+  - scope: { path: "" }
+    values: { image: /assets/img/site-icon.png }   # SNSで共有したときの画像（作品ページは作品の画像）
   - scope: { type: works }
     values: { layout: work }
 

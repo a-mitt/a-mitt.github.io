@@ -3,6 +3,7 @@ layout: default
 ---
 {% assign p = site.data.profile %}
 <section class="profile">
+  <img class="avatar" src="{{ '/assets/img/site-icon.png' | relative_url }}" alt="{{ p.name }}のアイコン" width="96" height="96">
   <h1>{{ p.name }} <span class="muted id">@{{ p.id }}</span></h1>
   <p>{% include t.html v=p.bio br=true %}</p>
 </section>

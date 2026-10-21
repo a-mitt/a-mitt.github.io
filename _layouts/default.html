@@ -24,11 +24,13 @@
 {% endfor %}{ display: none !important; }
 </style>
 {% seo %}
+<link rel="icon" type="image/png" href="{{ '/favicon.png' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
 <header class="site-header">
-  <a class="site-title" href="{{ '/' | relative_url }}">{% include t.html v=site.title %}</a>
+  <a class="site-title" href="{{ '/' | relative_url }}"><img src="{{ '/favicon.png' | relative_url }}" alt="" width="28" height="28">{% include t.html v=site.title %}</a>
   <label class="lang">
     <span aria-hidden="true">🌐</span>
     <select id="lang-select" aria-label="Language">
@@ -43,7 +45,10 @@
 <main>
 {{ content }}
 </main>
-<footer class="site-footer">© {{ site.data.profile.name }} ({{ site.data.profile.id }})</footer>
+<footer class="site-footer">
+  <p class="notice">{% include t.html v=site.data.profile.notice %}</p>
+  <p>© {{ site.data.profile.name }} ({{ site.data.profile.id }})</p>
+</footer>
 <script>
   (function () {
     var sel = document.getElementById("lang-select"), root = document.documentElement;
