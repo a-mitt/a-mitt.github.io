@@ -1,5 +1,6 @@
 {% assign w = include.work %}
 <a class="card" href="{{ w.url | relative_url }}">
+  {% if w.image %}<img class="thumb" src="{{ w.image | relative_url }}" alt="" loading="lazy">{% endif %}
   <div class="card-top"><span class="emoji">{{ w.emoji }}</span><span class="status">{{ w.status }}</span></div>
   <h3>{{ w.title }}</h3>
   <p>{{ w.description }}</p>

@@ -5,8 +5,26 @@ layout: default
 <section class="profile">
   <h1>{{ p.name }} <span class="muted id">@{{ p.id }}</span></h1>
   <p>{{ p.bio | newline_to_br }}</p>
+</section>
+
+<section>
+  <h2>各種サイトへのリンク</h2>
   <ul class="links">
-  {% for l in p.links %}{% if l.url != "" %}<li><a href="{{ l.url }}" rel="me">{{ l.label }}</a></li>{% endif %}{% endfor %}
+  {% for l in p.links %}{% if l.url != "" %}
+    <li><a href="{{ l.url }}" rel="me">
+      <span class="ico">
+        {% if l.avatar %}<img src="{{ l.avatar | relative_url }}" alt="" width="48" height="48" loading="lazy">
+        {% elsif l.logo %}{% capture f %}icons/{{ l.logo }}.svg{% endcapture %}{% include {{ f }} %}
+        {% else %}<span class="emo">{{ l.emoji }}</span>{% endif %}
+        {% if l.badge %}<span class="badge-logo">{% capture f %}icons/{{ l.badge }}.svg{% endcapture %}{% include {{ f }} %}</span>{% endif %}
+      </span>
+      <span class="txt">
+        <span class="name">{{ l.label }}{% if l.handle %} <span class="handle">{{ l.handle }}</span>{% endif %}</span>
+        {% if l.desc != "" %}<span class="desc">{{ l.desc }}</span>{% endif %}
+      </span>
+      <span class="arrow" aria-hidden="true">›</span>
+    </a></li>
+  {% endif %}{% endfor %}
   </ul>
 </section>
 

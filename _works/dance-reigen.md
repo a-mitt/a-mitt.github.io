@@ -7,6 +7,7 @@ status: 公開中
 description: 霊幻が踊るだけのページ。BGM・ペンライト・タップでクラッカーや拍手、みんなのコメントも流れる。
 tags: [ネタ, 二次創作, ブラウザ]
 play_url: https://a-mitt.github.io/dance-reigen/
+image: /assets/img/dance-reigen.jpg
 repo: https://github.com/a-mitt/dance-reigen
 ---
 

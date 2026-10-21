@@ -6,21 +6,45 @@ bio: |
   このサイトは作ったものへのリンクや紹介・アプデ告知などのために作成されました。
   気軽にお気に入り登録してね。
 
-# url が空のものは表示されません
+# 各種サイトへのリンク（url が空のものは表示されません）
+#   avatar: 左に出すアイコン画像 / logo: _includes/icons/ のロゴ名 / emoji: 絵文字アイコン
+#   badge: アイコン右下に重ねる小さなロゴ名
 links:
-  - label: X 表垢 @NLisei_Kotowari
+  - label: X（表垢）
+    handle: "@NLisei_Kotowari"
     url: https://x.com/NLisei_Kotowari
-  - label: X 裏垢 @Lisei_lose_
+    avatar: /assets/img/icon-x-main.jpg
+    badge: x
+    desc: 主にここにいます。投稿やお知らせはこちらが先です。
+  - label: X（裏垢）
+    handle: "@Lisei_lose_"
     url: https://x.com/Lisei_lose_
-  - label: pixiv（Norah）
+    avatar: /assets/img/icon-x-sub.jpg
+    badge: x
+    desc: 成人向けやセンシティブをあげます。高卒済み18⤴︎の表記ある方のみ通します。
+  - label: pixiv
+    handle: Norah
     url: https://www.pixiv.net/users/45276382
-  - label: 波箱
-    url: https://wavebox.me/wave/b6gm4wvcxjvu2gug/
+    logo: pixiv
+    desc: 作品のツイログや小説投稿、サンプル投稿などは主にここです。
+  - label: wavebox（波箱）
+    url: https://wavebox.me/wave/9ugc1tw31dw0531f/
+    emoji: 🌊📦
+    desc: 感想・リクエスト・報告などを受け付けている箱です。匿名で送れます。マロのようなもの。
   - label: BOOTH
     url: ""            # 例: https://xxxx.booth.pm/
+    emoji: 🛒
+    desc: ""
   - label: YouTube
     url: ""            # 例: https://www.youtube.com/@xxxx
+    emoji: ▶️
+    desc: ""
   - label: TikTok
     url: ""            # 例: https://www.tiktok.com/@xxxx
+    emoji: 🎵
+    desc: ""
   - label: GitHub
+    handle: a-mitt
     url: https://github.com/a-mitt
+    logo: github
+    desc: Webサイトなどのソースコード置き場。知識ある方は自由にコードを取得したり読んだりできます。情報収集の心配などありましたらチェックもここからどうぞ。

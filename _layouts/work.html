@@ -3,6 +3,7 @@ layout: default
 ---
 <article class="work">
   <p class="crumb"><a href="{{ '/' | relative_url }}">← 一覧へ</a></p>
+  {% if page.image %}<img class="hero" src="{{ page.image | relative_url }}" alt="{{ page.title }}のスクリーンショット">{% endif %}
   <div class="work-head">
     <span class="emoji big">{{ page.emoji }}</span>
     <div>
